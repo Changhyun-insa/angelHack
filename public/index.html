@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>IBM Compose for MySQL for IBM Cloud sample app</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="stylesheets/style.css">
+  </head>
+
+  <body>
+    <table style="width: 90%;">
+      <colgroup>
+        <col width="10%;">
+        <col width="40%;">
+        <col width="10%;">
+      </colgroup>
+      <thead>
+        <tr>
+          <th colspan="2">MAPPING URL</th><th>METHOD</th><th>DESCRIPTION</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td colspan="2">/reservationAll</td><td>GET</td><td>전체 조회 <br> <strong>&lt;element list&gt;</strong></td>
+        </tr>
+        <tr>
+          <td>/reservation</td><td>? id={id}</td><td>GET</td><td>id(reservation number)를 이용한 조회 <br> <strong>&lt;one element&gt;</strong></td>
+        </tr>
+        <tr>
+          <td>/reservation</td><td>? userId={userId}</td><td>GET</td><td>userId를 이용한 조회 <br> <strong>&lt;element list&gt;</strong></td>
+        </tr>
+        <tr>
+          <td>/reservation</td><td>? longitude={longitude} & latitude={latitude}</td><td>GET</td><td>위치(약 60m) 반경의 reservation 중 가장 먼저 예약된 내용  조회 <br> <strong>&lt;one element&gt;</strong></td>
+        </tr>
+        <tr>
+          <td>/reservation</td><td>? userId={userId} & longitude={longitude} & latitude={latitude}</td><td>POST</td><td>reservation 등록</td>
+        </tr>
+        <tr>
+          <td>/reservation</td><td>? id={id} & state={state}</td><td>PUT</td><td>reservation state 변경</td>
+        </tr>
+      </tbody>
+    </table>
+
+  </body>
+
+</html>

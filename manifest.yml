@@ -1,0 +1,7 @@
+---
+applications:
+- name:    angelHack
+  host:    angelHack
+  memory:  256M
+  services:
+    - Compose for MySQL-dn
