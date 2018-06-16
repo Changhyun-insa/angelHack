@@ -107,7 +107,7 @@ connection.connect(function(err) {
         console.log(err);
     } else {
         connection.query(
-            "CREATE TABLE IF NOT EXISTS words (id int auto_increment primary key, word varchar(256) NOT NULL, definition varchar(256) NOT NULL)",
+            "CREATE TABLE reservation (id INT NOT NULL auto_increment, user_id VARCHAR(30) NOT NULL, longitude DOUBLE NOT NULL, latitude DOUBLE NOT NULL, state VARCHAR(10) NOT NULL, PRIMARY KEY (id))",
             function(err, result) {
                 if (err) {
                     console.log(err);
