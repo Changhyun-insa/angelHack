@@ -179,7 +179,7 @@ function getReservationById(id) {
                     console.log(err);
                     reject(err);
                 } else {
-                    resolve(result);
+                    resolve(result[0]);
                 }
             }
         );
@@ -195,7 +195,7 @@ function getReservationBylnglat(longitude, latitude) {
                     console.log(err);
                     reject(err);
                 } else {
-                    resolve(result);
+                    resolve(result[0]);
                 }
             }
         );
