@@ -107,7 +107,7 @@ connection.connect(function(err) {
         console.log(err);
     } else {
         connection.query(
-            "CREATE TABLE reservation (id INT NOT NULL auto_increment, user_id VARCHAR(30) NOT NULL, longitude DOUBLE NOT NULL, latitude DOUBLE NOT NULL, state VARCHAR(10) NOT NULL, PRIMARY KEY (id))",
+            "CREATE TABLE reservation (id INT NOT NULL auto_increment, user_id VARCHAR(30) NOT NULL, longitude DOUBLE NOT NULL, latitude DOUBLE NOT NULL, state VARCHAR(10) NOT NULL, PRIMARY KEY (id));",
             function(err, result) {
                 if (err) {
                     console.log(err);
@@ -130,7 +130,7 @@ function addReservation(userId, longitude, latitude){
                     console.log(error);
                     reject(error);
                 } else {
-                    resolve("{ 'result' : " + result.insertId + " }");
+                    resolve("{ \"result\" : " + result.insertId + " }");
                 }
             }
         );
@@ -218,30 +218,27 @@ function getReservationByUserId(userId) {
     });
 }
 
-app.post("/reservation", function(request, response) {
-    addReservation(request.query.userId, request.query.longitude, request.query.latitude)
-        .then(function(resp) {
-            response.send(resp);
-        })
-        .catch(function(err) {
-            console.log(err);
-            response.status(500).send(err);
-        });
-});
-
-app.put("/reservation", function(request, response) {
-    updateReservation(request.query.id, request.query.state)
-        .then(function(resp) {
-            response.send(resp);
-        })
-        .catch(function(err) {
-            console.log(err);
-            response.status(500).send(err);
-        });
-});
-
 app.get("/reservation", function(request, response) {
-    if (request.query.id != null) {
+    console.log(request.query.length);
+    if (request.query.userId != null && request.query.longitude != null && request.query.latitude != null) {
+        addReservation(request.query.userId, request.query.longitude, request.query.latitude)
+            .then(function(resp) {
+                response.send(resp);
+            })
+            .catch(function(err) {
+                console.log(err);
+                response.status(500).send(err);
+            });
+    } else if (request.query.id != null && request.query.state != null) {
+        updateReservation(request.query.id, request.query.state)
+            .then(function(resp) {
+                response.send(resp);
+            })
+            .catch(function(err) {
+                console.log(err);
+                response.status(500).send(err);
+            });
+    } else if (request.query.id != null) {
         getReservationById(request.query.id)
             .then(function(resp) {
                 response.send(resp);
